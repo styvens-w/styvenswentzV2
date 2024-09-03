@@ -2,6 +2,7 @@ grumphp:
     tasks:
         phpcs:
             standard: ./phpcs.xml
+            triggered_by: [php]
         phpstan:
             configuration: ./phpstan.neon
             level: 5
