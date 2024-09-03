@@ -1,0 +1,40 @@
+<header class="header">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ path('admin_index') }}">
+                <img src="{{ asset('images/profile.webp') }}" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_index') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('cv_index') }}">CV</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a role="button" class="btn" href="{{ path('portfolio_index') }}">Portfolio</a>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item disabled" aria-disabled="true" href="#">Projets de formation</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ path('portfolio_index') }}#php">Formation - PHP Symfony</a></li>
+                            <li><a class="dropdown-item" href="{{ path('portfolio_index') }}#react">Formation - JavaScript React</a></li>
+                            <li><a class="dropdown-item disabled" aria-disabled="true" href="#">Autres projets</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ path('portfolio_index') }}#other">Indépendant</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('contact_index') }}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
