@@ -1,4 +1,4 @@
 parameters:
 	ignoreErrors:
 		- '#Constant [A-Z_]+ not found.#'
-    reportUnmatchedIgnoredErrors: false
+		reportUnmatchedIgnoredErrors: false
