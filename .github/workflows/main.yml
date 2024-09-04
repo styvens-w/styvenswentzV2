@@ -37,6 +37,6 @@ jobs:
 
             - name: code_quality
               run: |
-                  ./vendor/bin/phpcs
+                  ./vendor/bin/phpcs src
                   ./vendor/bin/phpstan analyse src --level 5
                   ./vendor/bin/phpmd src text phpmd.xml
