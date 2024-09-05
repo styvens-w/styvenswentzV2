@@ -1,11 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}show{% endblock %}
+{% block title %}Projet - {{ project.name }}{% endblock %}
 
 {% block stylesheets %}
 
 {% endblock %}
 
 {% block body %}
-    <h1>Projet {{ portfolioItem }}</h1>
+    <main class="project">
+        <article class="project__card">
+            <h1 class="project__card__title">{{ project.name }}</h1>
+
+            {% if project.pictures|length > 0 %}
+                <div id="carouselCaptions" class="project__card__carousel carousel slide">
+                    <div class="carousel-inner">
+                        {% for picture in project.pictures %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img src="{{ asset('images/projects/' ~ picture.name) }}" class="d-block w-100" alt="{{ picture.name }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {% if project.pictures|length > 1 %}
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div>
+                <span>Type :</span>
+                <span>
+                    {{ project.activity.type.name }}
+                </span>
+            </div>
+
+            <div>
+                <span>Activité :</span>
+                <span>
+                    {{ project.activity.name }}
+                </span>
+            </div>
+
+            <div>
+                <span>Entreprise :</span>
+                <span>
+                    {{ project.activity.compagny }}
+                </span>
+            </div>
+
+            <div>
+                <span>Début du projet :</span>
+                <span>{{ project.start|date('d/m/Y') }}</span>
+            </div>
+
+            <div>
+                <span>Fin du projet :</span>
+                <span>{{ project.end ? project.end|date('d/m/Y') : 'En cours' }}</span>
+            </div>
+
+            <div>
+                <span>Site :</span>
+                <span>
+                    {% if project.site %}
+                        <a href="{{ project.site }}">Cliquez ici</a>
+                    {% else %}
+                        Aucun
+                    {% endif %}
+                </span>
+            </div>
+
+            <div>
+                <span>Github :</span>
+                <span>
+                    {% if project.github %}
+                        <a href="{{ project.github }}">Cliquez ici</a>
+                    {% else %}
+                        Privé
+                    {% endif %}
+                </span>
+            </div>
+
+            <div>
+                <p>Description :</p>
+                <p>{{ project.description }}</p>
+            </div>
+        </article>
+    </main>
 {% endblock %}
