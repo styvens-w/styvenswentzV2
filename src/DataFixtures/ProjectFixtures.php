@@ -6,14 +6,15 @@ use App\Entity\Project;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use DateTime;
 
 class ProjectFixtures extends Fixture implements DependentFixtureInterface
 {
     public const array PROJECTS = [
         [
             'name' => "Mon Portfolio",
-            'start' => 2024,
-            'end' => 2024,
+            'start' => '2024-06-01',
+            'end' => '2024-08-07',
             'site' => "https://styvens-wentz.fr/",
             'github' => "https://github.com/styvens-w/styvenswentzV2",
             'description' => "Mon portfolio - Le site que vous visitez actuellement ",
@@ -21,8 +22,8 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'name' => "ETS Gaveriaux Raywan",
-            'start' => 2023,
-            'end' => 2023,
+            'start' => '2023-06-01',
+            'end' => '2023-08-07',
             'site' => "https://ets-raywangaveriaux.pro/",
             'github' => "",
             'description' => "Site réalisé pour un professionnel du bâtiment",
@@ -30,8 +31,8 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'name' => "Faites passer une librairie jQuery vers React",
-            'start' => 2023,
-            'end' => 2023,
+            'start' => '2023-01-01',
+            'end' => '2023-03-01',
             'site' => "",
             'github' => "https://github.com/styvens-w/faites_passer_une_librairie_jquery_vers_react",
             'description' => "Dans ce projet, vous participerez à la conversion d’une application de jQuery vers React pour une grande société 
@@ -49,8 +50,8 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'name' => "Utilisez une API pour un compte utilisateur bancaire avec React",
-            'start' => 2023,
-            'end' => 2023,
+            'start' => '2023-03-05',
+            'end' => '2023-04-01',
             'site' => "",
             'github' => "https://github.com/styvens-w/utilisez_une_api_pour_un_compte_utilisateur_bancaire_avec_react",
             'description' => "Dans ce projet, vous travaillerez sur le développement front-end d’une application bancaire en utilisant React et Redux 
@@ -70,8 +71,8 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'name' => "La Planche à Vins",
-            'start' => 2020,
-            'end' => 2020,
+            'start' => '2020-06-01',
+            'end' => '2020-06-30',
             'site' => "https://laplancheavins.site/",
             'github' => "",
             'description' => "Site réalisé pour un restaurateur",
@@ -79,8 +80,8 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'name' => "Deezer",
-            'start' => 2024,
-            'end' => 2024,
+            'start' => '2024-08-01',
+            'end' => '2024-08-30',
             'site' => "https://www.deezer.com/fr/",
             'github' => "",
             'description' => "Le celebre site deezer",
@@ -88,8 +89,8 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'name' => "Midi A Tech",
-            'start' => 2024,
-            'end' => 2024,
+            'start' => '2024-09-02',
+            'end' => '2024-09-30',
             'site' => "",
             'github' => "https://github.com/WildCodeSchool-2024-02/PHP-REM-POEC-05-MidiATech",
             'description' => "Projet de formation. Ont devaient réaliser un site pour une médiatech",
@@ -102,8 +103,8 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::PROJECTS as $key => $projects) {
             $project = new Project();
             $project->setName($projects['name']);
-            $project->setStart($projects['start']);
-            $project->setEnd($projects['end']);
+            $project->setStart(new DateTime($projects['start']));
+            $project->setEnd(new DateTime($projects['end']));
             $project->setSite($projects['site']);
             $project->setGithub($projects['github']);
             $project->setDescription($projects['description']);

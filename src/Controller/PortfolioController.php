@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -12,20 +13,33 @@ use Symfony\Component\Routing\Attribute\Route;
 class PortfolioController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    #[Route('/{activityId<\d+>?}', name: 'index_with_activity')]
+    public function index(?int $activityId, ProjectRepository $projectRepository): Response
     {
+        if ($activityId) {
+            $projects = $projectRepository->findByActivityId($activityId);
+        } else {
+            $projects = $projectRepository->findAll();
+        }
+
         return $this->render('portfolio/index.html.twig', [
-            'website' => 'Portfolio',
+            'projects' => $projects,
         ]);
     }
 
-    #[Route('/{id<\d+>}', name: 'show', methods: ['GET'])]
-    public function show(int $id): Response
+    #[Route('/project/{id<^[0-9]+$>}', name: 'show')]
+    public function show(int $id, ProjectRepository $projectRepository): Response
     {
-        $portfolioItem = $id;
+        $project = $projectRepository->findOneBy(['id' => $id]);
+
+        if (!$project) {
+            throw $this->createNotFoundException(
+                'No project with id : ' . $id . ' found in project\'s table.'
+            );
+        }
 
         return $this->render('portfolio/show.html.twig', [
-            'portfolioItem' => $portfolioItem,
+            'project' => $project,
         ]);
     }
 }

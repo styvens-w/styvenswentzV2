@@ -21,13 +21,57 @@
                             <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item disabled" aria-disabled="true" href="#">Projets de formation</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ path('portfolio_index') }}#php">Formation - PHP Symfony</a></li>
-                            <li><a class="dropdown-item" href="{{ path('portfolio_index') }}#react">Formation - JavaScript React</a></li>
-                            <li><a class="dropdown-item disabled" aria-disabled="true" href="#">Autres projets</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ path('portfolio_index') }}#other">Indépendant</a></li>
+                            {% set displayed_activity_names = [] %}
+
+                            {% set formation_header_displayed = false %}
+                            {% for project in projects %}
+                                {% if project.activity.type.name == 'Formation' and project.activity.name not in displayed_activity_names %}
+                                    {% if not formation_header_displayed %}
+                                        <li><a class="dropdown-item disabled" aria-disabled="true" href="#">Projets de formation</a></li>
+                                        {% set formation_header_displayed = true %}
+                                    {% endif %}
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('portfolio_index_with_activity', { activityId: project.activity.id }) }}">
+                                            {{ project.activity.name }}
+                                        </a>
+                                    </li>
+                                    {% set displayed_activity_names = displayed_activity_names | merge([project.activity.name]) %}
+                                {% endif %}
+                            {% endfor %}
+
+                            {% set experience_header_displayed = false %}
+                            {% for project in projects %}
+                                {% if project.activity.type.name == 'Expérience' and project.activity.name not in displayed_activity_names %}
+                                    {% if not experience_header_displayed %}
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item disabled" aria-disabled="true" href="#">Expériences professionnelles</a></li>
+                                        {% set experience_header_displayed = true %}
+                                    {% endif %}
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('portfolio_index_with_activity', { activityId: project.activity.id }) }}">
+                                            {{ project.activity.name }}
+                                        </a>
+                                    </li>
+                                    {% set displayed_activity_names = displayed_activity_names | merge([project.activity.name]) %}
+                                {% endif %}
+                            {% endfor %}
+
+                            {% set independent_header_displayed = false %}
+                            {% for project in projects %}
+                                {% if project.activity.type.name == 'Indépendant' and 'Indépendant' not in displayed_activity_names %}
+                                    {% if not independent_header_displayed %}
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item disabled" aria-disabled="true" href="#">Autres projets</a></li>
+                                        {% set independent_header_displayed = true %}
+                                    {% endif %}
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('portfolio_index_with_activity', { activityId: project.activity.id }) }}">
+                                            Indépendant
+                                        </a>
+                                    </li>
+                                    {% set displayed_activity_names = displayed_activity_names | merge(['Indépendant']) %}
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="nav-item">

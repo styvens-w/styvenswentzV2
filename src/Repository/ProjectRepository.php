@@ -16,6 +16,17 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
+    // Méthode pour trouver les projets par ID d'activité
+    public function findByActivityId(int $activityId): array
+    {
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.activity', 'a')
+            ->where('a.id = :activityId')
+            ->setParameter('activityId', $activityId)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Project[] Returns an array of Project objects
     //     */

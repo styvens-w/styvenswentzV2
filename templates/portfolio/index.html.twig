@@ -7,5 +7,49 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ website }}</h1>
+    <main class="portfolio">
+        <h1 class="portfolio__title">Tous les projets</h1>
+
+        <section class="portfolio__cards">
+            {% for project in projects %}
+            <div class="portfolio__cards__card">
+                <a href="{{ path('portfolio_show', {id: project.id}) }}">
+                    <div class="portfolio__cards__card__img">
+                        <img src="" alt="">
+                    </div>
+
+                    <div class="portfolio__cards__card__info">
+                        <p>
+                            <span>{{ project.activity.type.name ==  'Formation' ? 'Formation :' : 'Activité :' }}</span>
+                            <span>
+                            {{ project.activity.name }}
+                                {{ project.activity.degree ? '(' ~ project.activity.degree ~ ')' }}
+                                {{ project.activity.compagny ? ' - ' ~ project.activity.compagny }}
+                        </span>
+                        </p>
+
+                        <p>
+                            <span>Projet :</span>
+                            <span>{{ project.name }}</span>
+                        </p>
+
+                        <p>
+                            <span>Début du projet :</span>
+                            <span>{{ project.start|date('d/m/Y') }}</span>
+                        </p>
+
+                        <p>
+                            <span>Fin du projet :</span>
+                            <span>{{ project.end ? project.end|date('d/m/Y') : 'En cours' }}</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            {% else %}
+                <div class="portfolio__cards__info">
+                    <p>Aucun projet trouvé.</p>
+                </div>
+            {% endfor %}
+        </section>
+    </main>
 {% endblock %}
