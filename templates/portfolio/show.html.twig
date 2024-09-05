@@ -34,7 +34,38 @@
                 </div>
             {% endif %}
 
-            <p>
+            <div>
+                <span>Type :</span>
+                <span>
+                    {{ project.activity.type.name }}
+                </span>
+            </div>
+
+            <div>
+                <span>Activité :</span>
+                <span>
+                    {{ project.activity.name }}
+                </span>
+            </div>
+
+            <div>
+                <span>Entreprise :</span>
+                <span>
+                    {{ project.activity.compagny }}
+                </span>
+            </div>
+
+            <div>
+                <span>Début du projet :</span>
+                <span>{{ project.start|date('d/m/Y') }}</span>
+            </div>
+
+            <div>
+                <span>Fin du projet :</span>
+                <span>{{ project.end ? project.end|date('d/m/Y') : 'En cours' }}</span>
+            </div>
+
+            <div>
                 <span>Site :</span>
                 <span>
                     {% if project.site %}
@@ -43,9 +74,9 @@
                         Aucun
                     {% endif %}
                 </span>
-            </p>
+            </div>
 
-            <p>
+            <div>
                 <span>Github :</span>
                 <span>
                     {% if project.github %}
@@ -54,7 +85,12 @@
                         Privé
                     {% endif %}
                 </span>
-            </p>
+            </div>
+
+            <div>
+                <p>Description :</p>
+                <p>{{ project.description }}</p>
+            </div>
         </article>
     </main>
 {% endblock %}
