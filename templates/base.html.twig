@@ -4,15 +4,13 @@
         <meta charset="UTF-8">
         <title>{% block title %}Bienvenue!{% endblock %}</title>
         <link rel="icon" href="{{ asset('images/favicon.ico') }}">
-        {% block stylesheets %}
-        {% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
-        {{ render(controller('App\\Controller\\DefaultController::header')) }}
+        {{ render(controller('App\\Controller\\HomeController::header')) }}
 
         {% block body %}{% endblock %}
 

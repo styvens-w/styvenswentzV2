@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Project;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,17 +28,9 @@ class PortfolioController extends AbstractController
         ]);
     }
 
-    #[Route('/project/{id<^[0-9]+$>}', name: 'show')]
-    public function show(int $id, ProjectRepository $projectRepository): Response
+    #[Route('/project/{id<\d+>}', name: 'show')]
+    public function show(Project $project): Response
     {
-        $project = $projectRepository->findOneBy(['id' => $id]);
-
-        if (!$project) {
-            throw $this->createNotFoundException(
-                'No project with id : ' . $id . ' found in project\'s table.'
-            );
-        }
-
         return $this->render('portfolio/show.html.twig', [
             'project' => $project,
         ]);
