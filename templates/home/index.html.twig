@@ -4,6 +4,54 @@
 
 {% block body %}
     <main class="home">
-        <h1>{{ website }}</h1>
+        <div class="home__banner">
+            <h1 class="home__banner__title">Styvens Wentz</h1>
+            <h2 class="home__banner__title">Développeur Web</h2>
+            <h3 class="home__banner__title">JavaScript React et PHP Symfony</h3>
+            <a class="home__banner__link" href="#profile">QUI SUIS-JE ?</a>
+        </div>
+
+        <div id="profile" class="home__profile">
+            <h1 class="home__profile__title">A PROPOS DE MOI</h1>
+            <div class="home__profile__info">
+                <img src="{{ asset('images/others/profile.webp') }}" alt="profile">
+                <div>
+                    <p class="home__profile__info__paragraph">
+                        Bonjour,
+                    </p>
+
+                    <p class="home__profile__info__paragraph">
+                        Je me présente, Styvens Wentz, développeur Web junior, spécialisé en <b>JavaScript React</b> et <b>PHP Symfony</b>.
+                    </p>
+
+                    <p class="home__profile__info__paragraph">
+                        J'ai commencé par suivre la formation "Développeur Web et Web Mobile" avec <b>UP TO Fourmies</b> de septembre 2019 à août
+                        2020.<br> Cela m'a permis d'obtenir le diplôme « <b>Développeur Web et Web Mobile</b> » de niveau 5 (<b>Bac +2</b>).
+                    </p>
+
+                    <p class="home__profile__info__paragraph">
+                        J'ai ensuite suivi la formation "Développeur d'application - JavaScript React" avec <b>OpenClassrooms</b> de juillet 2022 à
+                        août 2023.<br> Cela m'a permis d'obtenir le diplôme « <b>Développeur Concepteur Logiciel</b> » de niveau 6 (<b>Bac +3/4</b>)
+                        avec une spécialité en Front-End (JavaScript React).
+                    </p>
+
+                    <p class="home__profile__info__paragraph">
+                        Dernièrement, j'ai suivi la formation "<b>POEC - PHP Symfony</b>" avec la <b>Wild Code School</b> de mai 2024 à août 2024.
+                    </p>
+
+                    <p class="home__profile__info__paragraph">
+                        Auparavant, j'ai effectué plusieurs années de jobs alimentaires (livreur, manutention, travail en usine, menuiserie, etc.).
+                        <br> Cela m'a permis d'acquérir de très bonnes compétences telles que la <b>polyvalence</b>, la <b>débrouillardise</b>,
+                        la <b>motivation</b> ainsi que <b>l'autonomie</b>.
+                    </p>
+
+                    <p class="home__profile__info__paragraph">
+                        Vous pouvez me contacter par courriel à l'adresse suivante
+                        <strong><a href="mailto:contact@styvens-wentz.fr">contact@styvens-wentz.fr</a></strong> et/ou consulter mon
+                        <strong><a href="{{ path('cv_index') }}">CV.</a></strong>
+                    </p>
+                </div>
+            </div>
+        </div>
     </main>
 {% endblock %}
