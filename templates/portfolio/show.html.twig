@@ -4,9 +4,11 @@
 
 {% block body %}
     <main class="project">
-        <article class="project__card">
-            <h1 class="project__card__title">{{ project.name }}</h1>
+        <h1 class="project__title">{{ project.name }}</h1>
 
+        <a href="{{ path('portfolio_index') }}">Retourner vers le portfolio</a>
+
+        <article class="project__card">
             {% if project.pictures|length > 0 %}
                 <div id="carouselCaptions" class="project__card__carousel carousel slide">
                     <div class="carousel-inner">
@@ -30,62 +32,68 @@
                 </div>
             {% endif %}
 
-            <div>
-                <span>Type :</span>
-                <span>
+            <div class="project__card__info">
+                <div>
+                    <span>Type :</span>
+                    <span>
                     {{ project.activity.type.name }}
-                </span>
-            </div>
+                    </span>
+                </div>
 
-            <div>
-                <span>Activité :</span>
-                <span>
+                <div>
+                    <span>Activité :</span>
+                    <span>
                     {{ project.activity.name }}
-                </span>
-            </div>
+                    </span>
+                </div>
 
-            <div>
-                <span>Entreprise :</span>
-                <span>
-                    {{ project.activity.compagny }}
-                </span>
-            </div>
+                <div>
+                    <span>Entreprise :</span>
+                    <span>
+                        {% if project.activity.compagny %}
+                            {{ project.activity.compagny }}
+                        {% else %}
+                            Aucune
+                        {% endif %}
+                    </span>
+                </div>
 
-            <div>
-                <span>Début du projet :</span>
-                <span>{{ project.start|date('d/m/Y') }}</span>
-            </div>
+                <div>
+                    <span>Début du projet :</span>
+                    <span>{{ project.start|date('d/m/Y') }}</span>
+                </div>
 
-            <div>
-                <span>Fin du projet :</span>
-                <span>{{ project.end ? project.end|date('d/m/Y') : 'En cours' }}</span>
-            </div>
+                <div>
+                    <span>Fin du projet :</span>
+                    <span>{{ project.end ? project.end|date('d/m/Y') : 'En cours' }}</span>
+                </div>
 
-            <div>
-                <span>Site :</span>
-                <span>
+                <div>
+                    <span>Site :</span>
+                    <span>
                     {% if project.site %}
                         <a href="{{ project.site }}">Cliquez ici</a>
                     {% else %}
                         Aucun
                     {% endif %}
                 </span>
-            </div>
+                </div>
 
-            <div>
-                <span>Github :</span>
-                <span>
+                <div>
+                    <span>Github :</span>
+                    <span>
                     {% if project.github %}
                         <a href="{{ project.github }}">Cliquez ici</a>
                     {% else %}
                         Privé
                     {% endif %}
                 </span>
-            </div>
+                </div>
 
-            <div>
-                <p>Description :</p>
-                <p>{{ project.description }}</p>
+                <div>
+                    <p>Description :</p>
+                    <p>{{ project.description }}</p>
+                </div>
             </div>
         </article>
     </main>

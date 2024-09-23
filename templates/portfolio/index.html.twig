@@ -4,15 +4,17 @@
 
 {% block body %}
     <main class="portfolio">
-        <h1 class="portfolio__title">Tous les projets</h1>
+        <h1 class="portfolio__title">Portfolio</h1>
 
         <section class="portfolio__cards">
             {% for project in projects %}
             <div class="portfolio__cards__card">
                 <a href="{{ path('portfolio_show', {id: project.id}) }}">
-                    <div class="portfolio__cards__card__img">
-                        <img src="" alt="">
-                    </div>
+                    {% if project.pictures is not empty %}
+                        <div class="portfolio__cards__card__img">
+                            <img src="{{ asset('images/projects/' ~ project.pictures[0].name) }}" alt="">
+                        </div>
+                    {% endif %}
 
                     <div class="portfolio__cards__card__info">
                         <p>
