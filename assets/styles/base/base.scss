@@ -1,5 +1,3 @@
-@import "../utils/variables";
-
 body {
   background: $background-primary;
   box-sizing: border-box;
@@ -10,80 +8,19 @@ body {
 }
 
 main {
-  padding: 0 15%;
-  flex: 1;
-}
-
-.header {
-  background: linear-gradient($background-header, $primary-border-color);
-  border-bottom: 1px solid $primary-border-color;
-  padding: 0 15%;
-
-  .navbar {
-    padding: 0;
-
-    .container-fluid {
-
-      .navbar-brand img {
-        height: 100px;
-        border-radius: 50%;
-      }
-
-      .navbar-toggler {
-        box-shadow: none;
-        border-color: rgba(255, 255, 255, 0.55);
-
-        &:focus {
-          box-shadow: none;
-        }
-      }
-
-      .navbar-collapse ul li {
-        &.dropdown {
-
-          a {
-            border: 0;
-            padding: 8px 0 8px 8px;
-
-            @media screen and (max-width: 991px) {
-              padding-left: 0;
-            }
-          }
-
-          .dropdown-menu {
-            background: $background-primary;
-            border: 1px solid $primary-border-color;
-            padding: 5px;
-
-            li a:hover {
-              background: $primary-border-color;
-            }
-
-            li a.disabled {
-              filter: brightness(0.6);
-            }
-          }
-        }
-
-        a, button {
-          color: $primary-color;
-          font-size: 18px;
-        }
-      }
-    }
-  }
-}
-
-.footer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 50px;
-  background: linear-gradient($primary-border-color, $background-header);
-  border-top: 1px solid $primary-border-color;
+  padding: 0 15%;
+  flex: 1;
+  margin-top: 30px;
 
-  p {
-    margin: 0;
+  @media screen and (max-width: 991px) {
+    padding: 0 20px;
+  }
+
+  h1 {
+    font-size: 40px;
+    text-align: center;
   }
 }

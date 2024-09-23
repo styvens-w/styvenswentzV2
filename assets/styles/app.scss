@@ -1,3 +1,8 @@
 @import '../../vendor/twbs/bootstrap/scss/bootstrap';
 
-@import './base/base';
+@import "./utils/variables";
+@import 'base/base';
+@import 'base/header';
+@import 'base/footer';
+@import 'portfolio/portfolio';
+@import 'project/project';
