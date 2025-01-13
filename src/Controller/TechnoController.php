@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Techno;
+use App\Form\TechnoType;
+use App\Repository\TechnoRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+
+#[Route('/techno')]
+final class TechnoController extends AbstractController
+{
+    #[Route(name: 'app_techno_index', methods: ['GET'])]
+    public function index(TechnoRepository $technoRepository): Response
+    {
+        return $this->render('techno/index.html.twig', [
+            'technos' => $technoRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/new', name: 'app_techno_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $techno = new Techno();
+        $form = $this->createForm(TechnoType::class, $techno);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($techno);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('techno/new.html.twig', [
+            'techno' => $techno,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_techno_show', methods: ['GET'])]
+    public function show(Techno $techno): Response
+    {
+        return $this->render('techno/show.html.twig', [
+            'techno' => $techno,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_techno_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Techno $techno, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(TechnoType::class, $techno);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('techno/edit.html.twig', [
+            'techno' => $techno,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'app_techno_delete', methods: ['POST'])]
+    public function delete(Request $request, Techno $techno, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $techno->getId(), $request->getPayload()->getString('_token'))) {
+            $entityManager->remove($techno);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
+    }
+}
