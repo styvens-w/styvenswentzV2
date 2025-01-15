@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index{% endblock %}
+{% block title %}Projets{% endblock %}
 
 {% block body %}
-    <h1>Project index</h1>
+    <h1>Projets</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Start</th>
-                <th>End</th>
+                <th style="width: 200px">Nom</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
                 <th>Site</th>
-                <th>Github</th>
-                <th>Description</th>
-                <th>actions</th>
+                <th style="width: 200px">Github</th>
+                <th style="width: 500px">Description</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +29,18 @@
                 <td>{{ project.github }}</td>
                 <td>{{ project.description }}</td>
                 <td>
-                    <a href="{{ path('app_project_show', {'id': project.id}) }}">show</a>
-                    <a href="{{ path('app_project_edit', {'id': project.id}) }}">edit</a>
+                    <a href="{{ path('app_project_show', {'id': project.id}) }}">Voir</a>
+                    |
+                    <a href="{{ path('app_project_edit', {'id': project.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucun projet trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_project_new') }}">Create new</a>
+    <a href="{{ path('app_project_new') }}">Créer un nouveau projet</a>
 {% endblock %}

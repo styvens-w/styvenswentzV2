@@ -7,8 +7,10 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
+#[Assert\EnableAutoMapping]
 #[ORM\Entity(repositoryClass: ActivityRepository::class)]
 class Activity
 {

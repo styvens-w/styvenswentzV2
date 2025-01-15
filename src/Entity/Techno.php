@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\TechnoRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
+#[Assert\EnableAutoMapping]
 #[ORM\Entity(repositoryClass: TechnoRepository::class)]
+#[UniqueEntity('name')]
 class Techno
 {
     #[ORM\Id]

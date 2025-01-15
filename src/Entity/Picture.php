@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\PictureRepository;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
+#[Assert\EnableAutoMapping]
 #[ORM\Entity(repositoryClass: PictureRepository::class)]
+#[UniqueEntity('name')]
 class Picture
 {
     #[ORM\Id]

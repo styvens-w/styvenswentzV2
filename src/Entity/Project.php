@@ -7,8 +7,10 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
+#[Assert\EnableAutoMapping]
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
 {
@@ -26,9 +28,11 @@ class Project
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?DateTimeInterface $end = null;
 
+    #[Assert\Email]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $site = null;
 
+    #[Assert\Email]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $github = null;
 

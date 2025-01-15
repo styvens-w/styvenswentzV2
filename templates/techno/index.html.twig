@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Techno index{% endblock %}
+{% block title %}Technologie{% endblock %}
 
 {% block body %}
-    <h1>Techno index</h1>
+    <h1>Technologie</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +19,18 @@
                 <td>{{ techno.id }}</td>
                 <td>{{ techno.name }}</td>
                 <td>
-                    <a href="{{ path('app_techno_show', {'id': techno.id}) }}">show</a>
-                    <a href="{{ path('app_techno_edit', {'id': techno.id}) }}">edit</a>
+                    <a href="{{ path('app_techno_show', {'id': techno.id}) }}">Voir</a>
+                    |
+                    <a href="{{ path('app_techno_edit', {'id': techno.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucune technologie trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_techno_new') }}">Create new</a>
+    <a href="{{ path('app_techno_new') }}">Ajouter une nouvelle technologie</a>
 {% endblock %}
