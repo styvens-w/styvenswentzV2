@@ -6,6 +6,7 @@ use App\Entity\Activity;
 use App\Entity\Project;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,12 +15,14 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('start', null, [
                 'widget' => 'single_text',
+                'label' => 'Date de début'
             ])
             ->add('end', null, [
                 'widget' => 'single_text',
+                'label' => 'Date de fin'
             ])
             ->add('site')
             ->add('github')
@@ -27,6 +30,7 @@ class ProjectType extends AbstractType
             ->add('activity', EntityType::class, [
                 'class' => Activity::class,
                 'choice_label' => 'name',
+                'label' => 'Pour l\'activité',
             ])
         ;
     }
