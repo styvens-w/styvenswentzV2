@@ -6,6 +6,7 @@ use App\Entity\Activity;
 use App\Entity\Project;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,9 +25,9 @@ class ProjectType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Date de fin'
             ])
-            ->add('site')
-            ->add('github')
-            ->add('description')
+            ->add('site', TextType::class, ['required' => false])
+            ->add('github', TextType::class, ['required' => false])
+            ->add('description', TextareaType::class, ['required' => false])
             ->add('activity', EntityType::class, [
                 'class' => Activity::class,
                 'choice_label' => 'name',

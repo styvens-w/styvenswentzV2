@@ -33,6 +33,8 @@ final class TechnoController extends AbstractController
             $entityManager->persist($techno);
             $entityManager->flush();
 
+            $this->addFlash('success', 'La technologie a bien été ajoutée.');
+
             return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,6 +61,8 @@ final class TechnoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'La technologie a bien été modifiée.');
+
             return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,6 +78,8 @@ final class TechnoController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $techno->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($techno);
             $entityManager->flush();
+
+            $this->addFlash('danger', 'La technologie a bien été supprimée.');
         }
 
         return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
