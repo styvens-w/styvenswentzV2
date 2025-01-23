@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle image{% endblock %}
+
+{% block body %}
+    <main class="admin__new">
+        <h1 class="admin__title">Ajouter une nouvelle image</h1>
+
+        <div class="actions">
+            <a class="actions__return" href="{{ path('app_picture_index') }}">Retour à la liste</a>
+        </div>
+
+        {{ include('admin/picture/_form.html.twig') }}
+    </main>
+{% endblock %}

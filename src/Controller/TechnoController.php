@@ -11,13 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/techno')]
+#[Route('admin/techno')]
 final class TechnoController extends AbstractController
 {
     #[Route(name: 'app_techno_index', methods: ['GET'])]
     public function index(TechnoRepository $technoRepository): Response
     {
-        return $this->render('techno/index.html.twig', [
+        return $this->render('admin/techno/index.html.twig', [
             'technos' => $technoRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ final class TechnoController extends AbstractController
             return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('techno/new.html.twig', [
+        return $this->render('admin/techno/new.html.twig', [
             'techno' => $techno,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ final class TechnoController extends AbstractController
     #[Route('/{id}', name: 'app_techno_show', methods: ['GET'])]
     public function show(Techno $techno): Response
     {
-        return $this->render('techno/show.html.twig', [
+        return $this->render('admin/techno/show.html.twig', [
             'techno' => $techno,
         ]);
     }
@@ -62,7 +62,7 @@ final class TechnoController extends AbstractController
             return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('techno/edit.html.twig', [
+        return $this->render('admin/techno/edit.html.twig', [
             'techno' => $techno,
             'form' => $form,
         ]);

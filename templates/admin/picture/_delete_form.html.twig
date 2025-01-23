@@ -1,5 +1,5 @@
-<form method="post" action="{{ path('app_picture_delete', {'id': picture.id}) }}"
+<form class="form__delete" method="post" action="{{ path('app_picture_delete', {'id': picture.id}) }}"
       onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ picture.id) }}">
-    <button class="btn">Supprimer</button>
+    <button class="btn actions__delete">Supprimer</button>
 </form>

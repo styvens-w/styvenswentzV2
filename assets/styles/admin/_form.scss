@@ -1,0 +1,26 @@
+[class^="admin__"] form:not(.form__delete) {
+  margin-top: 10px;
+  min-width: 300px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin: 10px 0 5px 0;
+    }
+
+    input, select {
+      height: 30px;
+    }
+
+    textarea {
+      height: 120px;
+    }
+  }
+
+  .actions .actions__new {
+    margin-top: 20px;
+    margin-bottom: 5px !important;
+  }
+}

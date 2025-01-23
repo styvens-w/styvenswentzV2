@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activités{% endblock %}
+
+{% block body %}
+    <main class="admin__index">
+        <h1 class="admin__title">Activités</h1>
+
+        <div class="actions">
+            <a class="actions__return" href="{{ path('admin_index') }}">Retour à l'espace administration</a>
+            <a class="actions__new" href="{{ path('app_activity_new') }}">Créer une nouvelle activité</a>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Entreprise</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Diplôme</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for activity in activities %}
+                <tr>
+                    <td>{{ activity.id }}</td>
+                    <td>{{ activity.name }}</td>
+                    <td>{{ activity.compagny }}</td>
+                    <td>{{ activity.start|date('d/m/Y') }}</td>
+                    <td>{{ activity.end ? activity.end|date('d/m/Y') : 'En cours' }}</td>
+                    <td>{{ activity.degree ? activity.degree : 'Sans diplôme' }}</td>
+                    <td>
+                        <div class="actions">
+                            <a class="actions__show" href="{{ path('app_activity_show', {'id': activity.id}) }}">Voir</a>
+                            |
+                            <a class="actions__edit" href="{{ path('app_activity_edit', {'id': activity.id}) }}">Modifier</a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucune activité trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+{% endblock %}

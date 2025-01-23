@@ -4,6 +4,13 @@
 
 {% block body %}
     <main class="admin">
-        <h1>{{ website }}</h1>
+        <h1 class="admin__title">{{ website }}</h1>
+
+        <div class="admin__actions">
+            <a class="admin__actions__activity" href="{{ path('app_activity_index') }}">Activités</a>
+            <a class="admin__actions__project" href="{{ path('app_project_index') }}">Projets</a>
+            <a class="admin__actions__techno" href="{{ path('app_techno_index') }}">Technologie</a>
+            <a class="admin__actions__picture" href="{{ path('app_picture_index') }}">Images</a>
+        </div>
     </main>
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle activitée{% endblock %}
+
+{% block body %}
+    <main class="admin__new">
+        <h1 class="admin__title">Créer une nouvelle activité</h1>
+
+        <div class="actions">
+            <a class="actions__return" href="{{ path('app_activity_index') }}">Retour à la liste</a>
+        </div>
+
+        {{ include('admin/activity/_form.html.twig') }}
+    </main>
+{% endblock %}

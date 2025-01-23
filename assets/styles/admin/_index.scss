@@ -1,0 +1,41 @@
+&__index {
+  padding: 0 10px;
+
+  thead, tbody, tfoot, tr, td, th {
+    border: none;
+  }
+
+  .table {
+    margin-top: 12px;
+
+    thead {
+      border-bottom: 2px solid $background-primary;
+
+      th {
+        background-color: cadetblue;
+        text-align: center;
+      }
+    }
+
+    tbody tr {
+      &:nth-child(odd) {
+        background-color: cornsilk;
+      }
+
+      &:nth-child(even) {
+        background-color: crimson;
+
+        td {
+          color: white;
+        }
+      }
+
+      td {
+        background-color: transparent;
+        height: auto;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
+}

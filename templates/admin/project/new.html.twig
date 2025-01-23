@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau projet{% endblock %}
+
+{% block body %}
+    <main class="admin__new">
+        <h1 class="admin__title">Créer un nouveau projet</h1>
+
+        <div class="actions">
+            <a class="actions__return" href="{{ path('app_project_index') }}">Retour à la liste</a>
+        </div>
+
+        {{ include('admin/project/_form.html.twig') }}
+    </main>
+{% endblock %}

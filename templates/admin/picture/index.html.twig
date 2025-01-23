@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Images{% endblock %}
+
+{% block body %}
+    <main class="admin__index">
+        <h1 class="admin__title">Images</h1>
+
+        <div class="actions">
+            <a class="actions__return" href="{{ path('admin_index') }}">Retour à l'espace administration</a>
+            <a class="actions__new" href="{{ path('app_picture_new') }}">Ajouter une nouvelle image</a>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for picture in pictures %}
+                <tr>
+                    <td>{{ picture.id }}</td>
+                    <td>{{ picture.name }}</td>
+                    <td>
+                        <div class="actions">
+                            <a class="actions__show" href="{{ path('app_picture_show', {'id': picture.id}) }}">Voir</a>
+                            |
+                            <a class="actions__edit" href="{{ path('app_picture_edit', {'id': picture.id}) }}">Modifier</a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucune image trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

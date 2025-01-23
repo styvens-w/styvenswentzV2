@@ -3,10 +3,15 @@
 {% block title %}Projet {{ project.id }}{% endblock %}
 
 {% block body %}
-    <h1>Projet {{ project.id }}</h1>
+    <main class="admin__show">
+        <h1 class="admin__title">Projet {{ project.id }}</h1>
 
-    <table class="table">
-        <tbody>
+        <div class="actions">
+            <a class="actions__return" href="{{ path('app_project_index') }}">Retour à la liste</a>
+        </div>
+
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ project.id }}</td>
@@ -35,12 +40,17 @@
                 <th>Description</th>
                 <td>{{ project.description }}</td>
             </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_project_edit', {'id': project.id}) }}">Modifier</a>
-
-    {{ include('project/_delete_form.html.twig') }}
-
-    <a href="{{ path('app_project_index') }}">Retour à la liste</a>
+            <tr>
+                <th>Actions</th>
+                <td>
+                    <div class="actions">
+                        <a class="actions__edit" href="{{ path('app_project_edit', {'id': project.id}) }}">Modifier</a>
+                        |
+                        {{ include('admin/project/_delete_form.html.twig') }}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
 {% endblock %}

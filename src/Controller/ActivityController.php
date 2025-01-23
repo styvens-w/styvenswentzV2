@@ -11,13 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/activity')]
+#[Route('admin/activity')]
 final class ActivityController extends AbstractController
 {
     #[Route(name: 'app_activity_index', methods: ['GET'])]
     public function index(ActivityRepository $activityRepository): Response
     {
-        return $this->render('activity/index.html.twig', [
+        return $this->render('admin/activity/index.html.twig', [
             'activities' => $activityRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ final class ActivityController extends AbstractController
             return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('activity/new.html.twig', [
+        return $this->render('admin/activity/new.html.twig', [
             'activity' => $activity,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ final class ActivityController extends AbstractController
     #[Route('/{id}', name: 'app_activity_show', methods: ['GET'])]
     public function show(Activity $activity): Response
     {
-        return $this->render('activity/show.html.twig', [
+        return $this->render('admin/activity/show.html.twig', [
             'activity' => $activity,
         ]);
     }
@@ -62,7 +62,7 @@ final class ActivityController extends AbstractController
             return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('activity/edit.html.twig', [
+        return $this->render('admin/activity/edit.html.twig', [
             'activity' => $activity,
             'form' => $form,
         ]);
