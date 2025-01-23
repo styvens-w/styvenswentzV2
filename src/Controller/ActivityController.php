@@ -33,6 +33,8 @@ final class ActivityController extends AbstractController
             $entityManager->persist($activity);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'activité a bien été ajoutée.');
+
             return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,6 +61,8 @@ final class ActivityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'activité a bien été modifiée.');
+
             return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -74,6 +78,8 @@ final class ActivityController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $activity->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($activity);
             $entityManager->flush();
+
+            $this->addFlash('danger', 'L\'activité a bien été supprimée.');
         }
 
         return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);

@@ -17,7 +17,7 @@ class ActivityType extends AbstractType
     {
         $builder
             ->add('name', TextareaType::class, ['label' => 'Nom'])
-            ->add('compagny', TextType::class, ['label' => 'Entreprise'])
+            ->add('compagny', TextType::class, ['label' => 'Entreprise', 'required' => false])
             ->add('start', null, [
                 'widget' => 'single_text',
                 'label' => 'Date de début'
@@ -26,7 +26,7 @@ class ActivityType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Date de fin'
             ])
-            ->add('degree', TextType::class, ['label' => 'Diplôme'])
+            ->add('degree', TextType::class, ['label' => 'Diplôme', 'required' => false])
             ->add('type', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'name',
