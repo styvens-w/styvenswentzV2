@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Technologie{% endblock %}
+
+{% block body %}
+    <main class="admin__techno">
+        <h1 class="admin__title">Technologie</h1>
+
+        <div class="actions">
+            <a class="actions__return" href="{{ path('admin_index') }}">Retour à l'espace administration</a>
+            <a class="actions__new" href="{{ path('app_techno_new') }}">Ajouter une nouvelle technologie</a>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for techno in technos %}
+                <tr>
+                    <td>{{ techno.id }}</td>
+                    <td>{{ techno.name }}</td>
+                    <td>
+                        <div class="actions">
+                            <a class="actions__show" href="{{ path('app_techno_show', {'id': techno.id}) }}">Voir</a>
+                            |
+                            <a class="actions__edit" href="{{ path('app_techno_edit', {'id': techno.id}) }}">Modifier</a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucune technologie trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

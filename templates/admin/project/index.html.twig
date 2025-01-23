@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projets{% endblock %}
+
+{% block body %}
+    <main class="admin__index">
+        <h1 class="admin__title">Projets</h1>
+
+        <div class="actions">
+            <a class="actions__return" href="{{ path('admin_index') }}">Retour à l'espace administration</a>
+            <a class="actions__new" href="{{ path('app_project_new') }}">Créer un nouveau projet</a>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Site</th>
+                <th>Github</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.id }}</td>
+                    <td>{{ project.name }}</td>
+                    <td>{{ project.start ? project.start|date('d/m/Y') : '' }}</td>
+                    <td>{{ project.end ? project.end|date('d/m/Y') : '' }}</td>
+                    <td>{{ project.site }}</td>
+                    <td>{{ project.github }}</td>
+                    <td>
+                        <div class="actions">
+                            <a class="actions__show" href="{{ path('app_project_show', {'id': project.id}) }}">Voir</a>
+                            |
+                            <a class="actions__edit" href="{{ path('app_project_edit', {'id': project.id}) }}">Modifier</a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun projet trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

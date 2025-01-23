@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Image {{ picture.id }}{% endblock %}
+
+{% block body %}
+    <main class="admin__show">
+        <h1 class="admin__title">Image {{ picture.id }}</h1>
+
+        <div class="actions">
+            <a class="actions__return" href="{{ path('app_picture_index') }}">Retour à la liste</a>
+        </div>
+
+        <img src="{{ asset('images/projects/' ~ picture.name) }}" alt="{{ picture.name }}">
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ picture.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ picture.name }}</td>
+            </tr>
+            <tr>
+                <th>Actions</th>
+                <td>
+                    <div class="actions">
+                        <a class="actions__edit" href="{{ path('app_picture_edit', {'id': picture.id}) }}">Modifier</a>
+                        |
+                        {{ include('admin/picture/_delete_form.html.twig') }}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

@@ -11,13 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/project')]
+#[Route('admin/project')]
 final class ProjectController extends AbstractController
 {
     #[Route(name: 'app_project_index', methods: ['GET'])]
     public function index(ProjectRepository $projectRepository): Response
     {
-        return $this->render('project/index.html.twig', [
+        return $this->render('admin/project/index.html.twig', [
             'projects' => $projectRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ final class ProjectController extends AbstractController
             return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('project/new.html.twig', [
+        return $this->render('admin/project/new.html.twig', [
             'project' => $project,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ final class ProjectController extends AbstractController
     #[Route('/{id}', name: 'app_project_show', methods: ['GET'])]
     public function show(Project $project): Response
     {
-        return $this->render('project/show.html.twig', [
+        return $this->render('admin/project/show.html.twig', [
             'project' => $project,
         ]);
     }
@@ -62,7 +62,7 @@ final class ProjectController extends AbstractController
             return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('project/edit.html.twig', [
+        return $this->render('admin/project/edit.html.twig', [
             'project' => $project,
             'form' => $form,
         ]);

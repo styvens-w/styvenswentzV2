@@ -1,0 +1,34 @@
+&__show {
+  img {
+    width: 70%;
+    height: 70%;
+    margin: 20px auto;
+  }
+
+  tr {
+    th {
+      background-color: cadetblue;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    &:nth-child(odd) {
+      background-color: cornsilk;
+    }
+
+    &:nth-child(even) {
+      background-color: crimson;
+
+      td {
+        color: white;
+      }
+    }
+
+    td {
+      background-color: transparent;
+      height: auto;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+}
