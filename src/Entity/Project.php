@@ -28,11 +28,9 @@ class Project
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?DateTimeInterface $end = null;
 
-    #[Assert\Email]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $site = null;
 
-    #[Assert\Email]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $github = null;
 
@@ -49,9 +47,16 @@ class Project
     #[ORM\OneToMany(targetEntity: Picture::class, mappedBy: 'project')]
     private Collection $pictures;
 
+    /**
+     * @var Collection<int, Techno>
+     */
+    #[ORM\ManyToMany(targetEntity: Techno::class, mappedBy: 'projects')]
+    private Collection $technos;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
+        $this->technos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +173,33 @@ class Project
             if ($picture->getProject() === $this) {
                 $picture->setProject(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Techno>
+     */
+    public function getTechnos(): Collection
+    {
+        return $this->technos;
+    }
+
+    public function addTechno(Techno $techno): static
+    {
+        if (!$this->technos->contains($techno)) {
+            $this->technos->add($techno);
+            $techno->addProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTechno(Techno $techno): static
+    {
+        if ($this->technos->removeElement($techno)) {
+            $techno->removeProject($this);
         }
 
         return $this;

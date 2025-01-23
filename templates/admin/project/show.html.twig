@@ -37,6 +37,20 @@
                 <td>{{ project.github }}</td>
             </tr>
             <tr>
+                <th>Technologies</th>
+                <td>
+                    {% for techno in project.technos %}
+                        <span>{{ techno.name }} | </span>
+                    {% else %}
+                        <span>Aucune technologie pour ce projet</span>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Activité</th>
+                <td>{{ project.activity.name }}</td>
+            </tr>
+            <tr>
                 <th>Description</th>
                 <td>{{ project.description }}</td>
             </tr>

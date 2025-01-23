@@ -3,7 +3,7 @@
 {% block title %}Technologie {{ techno.id }}{% endblock %}
 
 {% block body %}
-    <main class="admin__techno__edit">
+    <main class="admin__show">
         <h1 class="admin__title">Technologie {{ techno.id }}</h1>
 
         <div class="actions">
@@ -19,6 +19,16 @@
             <tr>
                 <th>Nom</th>
                 <td>{{ techno.name }}</td>
+            </tr>
+            <tr>
+                <th>Projets</th>
+                <td>
+                    {% for project in techno.projects %}
+                        <span>{{ project.name }} | </span>
+                    {% else %}
+                        <span>Aucun projet pour cette technologie</span>
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Actions</th>

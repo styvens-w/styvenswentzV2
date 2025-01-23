@@ -91,6 +91,15 @@
                 </div>
 
                 <div>
+                    <span>Technologies :</span>
+                    {% for techno in project.technos %}
+                        <span>{{ techno.name }} | </span>
+                    {% else %}
+                        <span>Aucune technologie pour ce projet</span>
+                    {% endfor %}
+                </div>
+
+                <div>
                     <p>Description :</p>
                     <p>{{ project.description }}</p>
                 </div>
