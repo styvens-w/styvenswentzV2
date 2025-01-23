@@ -1,21 +1,41 @@
 [class^="admin__"] form:not(.form__delete) {
   margin-top: 10px;
-  min-width: 300px;
+  width: 300px;
 
   div {
     display: flex;
     flex-direction: column;
 
     label {
-      margin: 10px 0 5px 0;
+      margin: 15px 0 5px 0;
+      font-weight: 700;
     }
 
-    input, select {
+    input:not([type="checkbox"]), select {
       height: 30px;
     }
 
     textarea {
       height: 120px;
+    }
+
+    div#project_technos, div#techno_projects {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      label {
+        display: block;
+        width: 85%;
+        margin: 0 25px 15px 5px;
+        font-size: 14px;
+        color: #3dd5f3;
+        font-weight: initial;
+      }
+
+      input {
+        margin-bottom: 15px;
+      }
     }
   }
 

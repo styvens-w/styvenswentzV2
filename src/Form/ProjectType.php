@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Activity;
 use App\Entity\Project;
+use App\Entity\Techno;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -32,6 +33,15 @@ class ProjectType extends AbstractType
                 'class' => Activity::class,
                 'choice_label' => 'name',
                 'label' => 'Pour l\'activité',
+            ])
+            ->add('technos', EntityType::class, [
+                'class' => Techno::class,
+                'choice_label' => 'name',
+                'label' => 'Technologies',
+                'multiple' => true,
+                'expanded' => true,
+                'required' => false,
+                'by_reference' => false,
             ])
         ;
     }
