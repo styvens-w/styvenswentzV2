@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('admin/activity')]
 final class ActivityController extends AbstractController
@@ -23,19 +24,24 @@ final class ActivityController extends AbstractController
     }
 
     #[Route('/new', name: 'app_activity_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $activity = new Activity();
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($activity);
-            $entityManager->flush();
+        if ($form->isSubmitted()) {
+            $slug = $slugger->slug($activity->getName());
+            $activity->setSlug($slug);
 
-            $this->addFlash('success', 'L\'activité a bien été ajoutée.');
+            if ($form->isValid()) {
+                $entityManager->persist($activity);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', 'L\'activité a bien été ajoutée.');
+
+                return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('admin/activity/new.html.twig', [
@@ -44,7 +50,7 @@ final class ActivityController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_activity_show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'app_activity_show', methods: ['GET'])]
     public function show(Activity $activity): Response
     {
         return $this->render('admin/activity/show.html.twig', [
@@ -52,18 +58,23 @@ final class ActivityController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_activity_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Activity $activity, EntityManagerInterface $entityManager): Response
+    #[Route('/{slug}/edit', name: 'app_activity_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Activity $activity, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+        if ($form->isSubmitted()) {
+            $slug = $slugger->slug($activity->getName());
+            $activity->setSlug($slug);
 
-            $this->addFlash('success', 'L\'activité a bien été modifiée.');
+            if ($form->isValid()) {
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', 'L\'activité a bien été modifiée.');
+
+                return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('admin/activity/edit.html.twig', [

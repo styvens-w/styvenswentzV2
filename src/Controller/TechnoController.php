@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('admin/techno')]
 final class TechnoController extends AbstractController
@@ -23,19 +24,24 @@ final class TechnoController extends AbstractController
     }
 
     #[Route('/new', name: 'app_techno_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $techno = new Techno();
         $form = $this->createForm(TechnoType::class, $techno);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($techno);
-            $entityManager->flush();
+        if ($form->isSubmitted()) {
+            $slug = $slugger->slug($techno->getName());
+            $techno->setSlug($slug);
 
-            $this->addFlash('success', 'La technologie a bien été ajoutée.');
+            if ($form->isValid()) {
+                $entityManager->persist($techno);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', 'La technologie a bien été ajoutée.');
+
+                return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('admin/techno/new.html.twig', [
@@ -44,7 +50,7 @@ final class TechnoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_techno_show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'app_techno_show', methods: ['GET'])]
     public function show(Techno $techno): Response
     {
         return $this->render('admin/techno/show.html.twig', [
@@ -52,18 +58,23 @@ final class TechnoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_techno_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Techno $techno, EntityManagerInterface $entityManager): Response
+    #[Route('/{slug}/edit', name: 'app_techno_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Techno $techno, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(TechnoType::class, $techno);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+        if ($form->isSubmitted()) {
+            $slug = $slugger->slug($techno->getName());
+            $techno->setSlug($slug);
 
-            $this->addFlash('success', 'La technologie a bien été modifiée.');
+            if ($form->isValid()) {
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', 'La technologie a bien été modifiée.');
+
+                return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->render('admin/techno/edit.html.twig', [

@@ -7,6 +7,7 @@ use App\Entity\Project;
 use App\Entity\Techno;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,6 +34,15 @@ class ProjectType extends AbstractType
                 'class' => Activity::class,
                 'choice_label' => 'name',
                 'label' => 'Pour l\'activité',
+            ])
+            ->add('close', ChoiceType::class, [
+                'label' => 'Le site est t\'il fermer ?',
+                'choices'  => [
+                    'Oui' => true,
+                    'Non' => false,
+                ],
+                'multiple' => false,
+                'expanded' => true,
             ])
             ->add('technos', EntityType::class, [
                 'class' => Techno::class,

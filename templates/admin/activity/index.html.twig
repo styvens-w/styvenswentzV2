@@ -34,9 +34,9 @@
                     <td>{{ activity.degree ? activity.degree : 'Sans diplôme' }}</td>
                     <td>
                         <div class="actions">
-                            <a class="actions__show" href="{{ path('app_activity_show', {'id': activity.id}) }}">Voir</a>
+                            <a class="actions__show" href="{{ path('app_activity_show', {'slug': activity.slug}) }}">Voir</a>
                             |
-                            <a class="actions__edit" href="{{ path('app_activity_edit', {'id': activity.id}) }}">Modifier</a>
+                            <a class="actions__edit" href="{{ path('app_activity_edit', {'slug': activity.slug}) }}">Modifier</a>
                         </div>
                     </td>
                 </tr>

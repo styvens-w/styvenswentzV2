@@ -26,9 +26,9 @@
                     <td>{{ techno.name }}</td>
                     <td>
                         <div class="actions">
-                            <a class="actions__show" href="{{ path('app_techno_show', {'id': techno.id}) }}">Voir</a>
+                            <a class="actions__show" href="{{ path('app_techno_show', {'slug': techno.slug}) }}">Voir</a>
                             |
-                            <a class="actions__edit" href="{{ path('app_techno_edit', {'id': techno.id}) }}">Modifier</a>
+                            <a class="actions__edit" href="{{ path('app_techno_edit', {'slug': techno.slug}) }}">Modifier</a>
                         </div>
                     </td>
                 </tr>

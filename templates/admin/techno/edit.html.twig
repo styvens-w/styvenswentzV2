@@ -4,7 +4,7 @@
 
 {% block body %}
     <main class="admin__edit">
-        <h1 class="admin__title">Modifier la techno</h1>
+        <h1 class="admin__title">Modifier la techno : {{ techno.name }}</h1>
 
         <div class="actions">
             <a class="actions__return" href="{{ path('app_techno_index') }}">Retour à la liste</a>

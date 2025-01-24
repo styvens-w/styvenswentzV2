@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Image {{ picture.id }}{% endblock %}
+{% block title %}{{ picture.name }}{% endblock %}
 
 {% block body %}
     <main class="admin__show">
-        <h1 class="admin__title">Image {{ picture.id }}</h1>
+        <h1 class="admin__title">Image : {{ picture.name }}</h1>
 
         <div class="actions">
             <a class="actions__return" href="{{ path('app_picture_index') }}">Retour à la liste</a>
