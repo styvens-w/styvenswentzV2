@@ -4,7 +4,8 @@
 
 {% block body %}
     <main class="project">
-        <h1 class="project__title">{{ project.name }}</h1>
+        <h1 class="project__title">{{ project.name }} </h1>
+        <p class="project__subtitle">{{ project.close ? '(Le site n\'est pas en ligne ou l\'entreprise a fermé.)' }}</p>
 
         <a href="{{ path('portfolio_index') }}">Retourner vers le portfolio</a>
 
@@ -48,7 +49,7 @@
                 </div>
 
                 <div>
-                    <span>Entreprise :</span>
+                    <span>Projet réalisé chez :</span>
                     <span>
                         {% if project.activity.compagny %}
                             {{ project.activity.compagny }}
