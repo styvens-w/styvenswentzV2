@@ -34,9 +34,9 @@
                     <td>{{ project.github }}</td>
                     <td>
                         <div class="actions">
-                            <a class="actions__show" href="{{ path('app_project_show', {'id': project.id}) }}">Voir</a>
+                            <a class="actions__show" href="{{ path('app_project_show', {'slug': project.slug}) }}">Voir</a>
                             |
-                            <a class="actions__edit" href="{{ path('app_project_edit', {'id': project.id}) }}">Modifier</a>
+                            <a class="actions__edit" href="{{ path('app_project_edit', {'slug': project.slug}) }}">Modifier</a>
                         </div>
                     </td>
                 </tr>

@@ -53,6 +53,12 @@ class Project
     #[ORM\ManyToMany(targetEntity: Techno::class, mappedBy: 'projects')]
     private Collection $technos;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column]
+    private ?bool $close = null;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -201,6 +207,30 @@ class Project
         if ($this->technos->removeElement($techno)) {
             $techno->removeProject($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function isClose(): ?bool
+    {
+        return $this->close;
+    }
+
+    public function setClose(bool $close): static
+    {
+        $this->close = $close;
 
         return $this;
     }

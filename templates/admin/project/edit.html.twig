@@ -4,7 +4,7 @@
 
 {% block body %}
     <main class="admin__edit">
-        <h1 class="admin__title">Modifier le projet</h1>
+        <h1 class="admin__title">Modifier le projet : {{ project.name }}</h1>
 
         <div class="actions">
             <a class="actions__return" href="{{ path('app_project_index') }}">Retour à la liste</a>

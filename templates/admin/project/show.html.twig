@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Projet {{ project.id }}{% endblock %}
+{% block title %}{{ project.name }}{% endblock %}
 
 {% block body %}
     <main class="admin__show">
-        <h1 class="admin__title">Projet {{ project.id }}</h1>
+        <h1 class="admin__title">Projet : {{ project.name }}</h1>
 
         <div class="actions">
             <a class="actions__return" href="{{ path('app_project_index') }}">Retour à la liste</a>
@@ -58,7 +58,7 @@
                 <th>Actions</th>
                 <td>
                     <div class="actions">
-                        <a class="actions__edit" href="{{ path('app_project_edit', {'id': project.id}) }}">Modifier</a>
+                        <a class="actions__edit" href="{{ path('app_project_edit', {'slug': project.slug}) }}">Modifier</a>
                         |
                         {{ include('admin/project/_delete_form.html.twig') }}
                     </div>
