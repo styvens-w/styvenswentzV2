@@ -1,44 +1,51 @@
-.project__card {
-  margin: 30px 0;
-
-  &__carousel {
-    margin-bottom: 30px;
-
-    .carousel-inner {
-      border-radius: 15px;
-      box-shadow: 6px 6px 10px #2c1c1c;
-    }
-
-    button {
-      width: auto;
-      margin: 0 10px;
-    }
+.project {
+  &__subtitle {
+    font-size: 18px;
   }
 
-  &__info div {
-    font-size: 20px;
-    color: $primary-color;
-    margin-bottom: 15px;
+  &__card {
+    margin: 30px 0;
 
-    span:first-child, p:first-child {
-      display: inline-block;
-      font-weight: bold;
-      text-decoration: underline;
-      width: 180px;
+    &__carousel {
+      margin-bottom: 30px;
 
-      @media screen and (max-width: 991px) {
-        width: 100%;
+      .carousel-inner {
+        border-radius: 15px;
+        box-shadow: 6px 6px 10px #2c1c1c;
+      }
+
+      button {
+        width: auto;
+        margin: 0 10px;
       }
     }
 
-    span a {
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
+    &__info div {
+      font-size: 20px;
+      color: $primary-color;
+      margin-bottom: 15px;
 
-      &:hover {
+      span:first-child, p:first-child {
+        display: inline-block;
         font-weight: bold;
+        text-decoration: underline;
+        width: 180px;
+
+        @media screen and (max-width: 991px) {
+          width: 100%;
+        }
+      }
+
+      span a {
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+
+        &:hover {
+          font-weight: bold;
+        }
       }
     }
   }
 }
+
