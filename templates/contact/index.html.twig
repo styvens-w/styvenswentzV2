@@ -4,6 +4,8 @@
 
 {% block body %}
     <main class="contact">
+        <h1 class="contact__title">Formulaire de Contact</h1>
+
         <div class="contact__other">
             <div class="contact__other__icon">
                 {{ ux_icon('material-symbols:info-outline') }}
@@ -11,13 +13,9 @@
             <p>
                 Vous avez également la possibilité de me contacter directement par courriel à
                 <a href="mailto:contact@styvens-wentz.fr">contact@styvens-wentz.fr</a>
-                ou par téléphone au
-                <a href="tel:0749486311">07 49 48 63 11</a>
-                pour plus d'informations.
+                ou par téléphone au <a href="tel:0749486311">07 49 48 63 11</a> pour plus d'informations.
             </p>
         </div>
-
-        <h1 class="contact__title">Formulaire de Contact</h1>
 
         {{ form_start(form) }}
             {{ form_widget(form) }}
