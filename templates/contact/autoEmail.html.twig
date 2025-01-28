@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact</title>
+</head>
+<body style="background-color: #393939; color: #c8c8c8; margin: 0; font-family: Arial, sans-serif;">
+
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <div>
+        <a href="https://styvens-wentz.fr/">
+            <img src="https://styvens-wentz.fr/static/media/profile.f41e9fb12e8a0e80d074.webp" style="height: 100px; border-radius: 50%" alt="profile">
+        </a>
+    </div>
+
+
+    <h2>Formulaire de contact</h2>
+
+    <div>
+        <p>Votre message a été envoyé avec succès !</p>
+        <p>Vous recevrez une réponse dans un délai de 48 heures (jours ouvrables).</p>
+    </div>
+
+    <div style="background-color: white; color: black">
+        <div>
+            <p style="margin-bottom: 15px">
+            <span style="display: inline-block; font-weight: bold; width: 110px; text-decoration: underline">
+                Nom :
+            </span>
+                {{ contact.firstname }}
+            </p>
+
+            <p style="margin-bottom: 15px">
+            <span style="display: inline-block; font-weight: bold; width: 110px; text-decoration: underline">
+                Prénom :
+            </span>
+                {{ contact.lastname }}
+            </p>
+
+            <p style="margin-bottom: 15px">
+            <span style="display: inline-block; font-weight: bold; width: 110px; text-decoration: underline">
+                Sujet :
+            </span>
+                {{ contact.subject }}
+            </p>
+        </div>
+
+        <div>
+            <p style="display: inline-block; font-weight: bold; width: 110px; text-decoration: underline; margin: 0;">
+                Message :
+            </p>
+            <p style="margin-top: 10px">{{ contact.message }}</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
