@@ -15,7 +15,7 @@
                     <div class="carousel-inner">
                         {% for picture in project.pictures %}
                             <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                <img src="{{ asset('images/projects/' ~ picture.name) }}" class="d-block w-100" alt="{{ picture.name }}">
+                                <img src="{{ vich_uploader_asset(picture) }}" class="d-block w-100" alt="{{ project.name }}">
                             </div>
                         {% endfor %}
                     </div>
