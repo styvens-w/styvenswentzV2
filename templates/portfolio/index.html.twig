@@ -12,7 +12,7 @@
                 <a href="{{ path('portfolio_show', {id: project.id}) }}">
                     {% if project.pictures is not empty %}
                         <div class="portfolio__cards__card__img">
-                            <img src="{{ asset('images/projects/' ~ project.pictures[0].name) }}" alt="">
+                            <img src="{{ vich_uploader_asset(project.pictures|first) }}" alt="{{ project.name }}">
                         </div>
                     {% endif %}
 

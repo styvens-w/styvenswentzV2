@@ -4,13 +4,13 @@
 
 {% block body %}
     <main class="admin__show">
-        <h1 class="admin__title">Image : {{ picture.name }}</h1>
+        <h1 class="admin__title">Image</h1>
 
         <div class="actions">
             <a class="actions__return" href="{{ path('app_picture_index') }}">Retour à la liste</a>
         </div>
 
-        <img src="{{ asset('images/projects/' ~ picture.name) }}" alt="{{ picture.name }}">
+        <img src="{{ vich_uploader_asset(picture) }}" alt="{{ picture.name }}">
 
         <table class="table">
             <tbody>
@@ -21,6 +21,10 @@
             <tr>
                 <th>Nom</th>
                 <td>{{ picture.name }}</td>
+            </tr>
+            <tr>
+                <th>Projet associé</th>
+                <td>{{ picture.project.name }}</td>
             </tr>
             <tr>
                 <th>Actions</th>

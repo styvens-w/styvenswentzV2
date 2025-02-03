@@ -4,7 +4,9 @@
 
 {% block body %}
     <main class="admin__edit">
-        <h1 class="admin__title">Modifier l'image : {{ picture.name }}</h1>
+        <h1 class="admin__title">Modifier l'image</h1>
+
+        <img style="width: 25%; height: 25%; margin-bottom: 20px" src="{{ vich_uploader_asset(picture) }}" alt="{{ picture.name }}">
 
         <div class="actions">
             <a class="actions__return" href="{{ path('app_picture_index') }}">Retour à la liste</a>
