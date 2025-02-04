@@ -30,18 +30,16 @@ final class ProjectController extends AbstractController
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $slug = $slugger->slug($project->getName());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($project->getName())->lower();
             $project->setSlug($slug);
 
-            if ($form->isValid()) {
-                $entityManager->persist($project);
-                $entityManager->flush();
+            $entityManager->persist($project);
+            $entityManager->flush();
 
-                $this->addFlash('success', 'Le projet a bien été ajouté.');
+            $this->addFlash('success', 'Le projet a bien été ajouté.');
 
-                return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
-            }
+            return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/project/new.html.twig', [
@@ -64,17 +62,15 @@ final class ProjectController extends AbstractController
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $slug = $slugger->slug($project->getName());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($project->getName())->lower();
             $project->setSlug($slug);
 
-            if ($form->isValid()) {
-                $entityManager->flush();
+            $entityManager->flush();
 
-                $this->addFlash('success', 'Le projet a bien été modifié.');
+            $this->addFlash('success', 'Le projet a bien été modifié.');
 
-                return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
-            }
+            return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/project/edit.html.twig', [

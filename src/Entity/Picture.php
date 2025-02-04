@@ -28,10 +28,12 @@ class Picture
         maxSize: '3M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
+    #[Assert\NotBlank(message: "Vous devez choisir une image.")]
     private ?File $posterFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'pictures')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank(message: "Vous devez choisir un projet associé a l'image choisie.")]
     private ?Project $project = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
