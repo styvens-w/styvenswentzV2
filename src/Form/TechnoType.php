@@ -26,8 +26,7 @@ class TechnoType extends AbstractType
                 'expanded' => true,
                 'required' => false,
                 'by_reference' => false,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

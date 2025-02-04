@@ -20,12 +20,14 @@ class Activity
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $compagny = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message: "La date de début ne peut pas être vide.")]
     private ?DateTimeInterface $start = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
@@ -45,7 +47,7 @@ class Activity
     private Collection $projects;
 
     #[ORM\Column(length: 255)]
-    private ?string $slug = null;
+    private ?string $slug = "";
 
     public function __construct()
     {

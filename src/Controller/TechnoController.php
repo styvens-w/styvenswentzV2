@@ -30,18 +30,16 @@ final class TechnoController extends AbstractController
         $form = $this->createForm(TechnoType::class, $techno);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $slug = $slugger->slug($techno->getName());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($techno->getName())->lower();
             $techno->setSlug($slug);
 
-            if ($form->isValid()) {
-                $entityManager->persist($techno);
-                $entityManager->flush();
+            $entityManager->persist($techno);
+            $entityManager->flush();
 
-                $this->addFlash('success', 'La technologie a bien été ajoutée.');
+            $this->addFlash('success', 'La technologie a bien été ajoutée.');
 
-                return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
-            }
+            return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/techno/new.html.twig', [
@@ -64,17 +62,15 @@ final class TechnoController extends AbstractController
         $form = $this->createForm(TechnoType::class, $techno);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $slug = $slugger->slug($techno->getName());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($techno->getName())->lower();
             $techno->setSlug($slug);
 
-            if ($form->isValid()) {
-                $entityManager->flush();
+            $entityManager->flush();
 
-                $this->addFlash('success', 'La technologie a bien été modifiée.');
+            $this->addFlash('success', 'La technologie a bien été modifiée.');
 
-                return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
-            }
+            return $this->redirectToRoute('app_techno_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/techno/edit.html.twig', [

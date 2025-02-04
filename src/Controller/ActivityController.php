@@ -30,18 +30,16 @@ final class ActivityController extends AbstractController
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $slug = $slugger->slug($activity->getName());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($activity->getName())->lower();
             $activity->setSlug($slug);
 
-            if ($form->isValid()) {
-                $entityManager->persist($activity);
-                $entityManager->flush();
+            $entityManager->persist($activity);
+            $entityManager->flush();
 
-                $this->addFlash('success', 'L\'activité a bien été ajoutée.');
+            $this->addFlash('success', 'L\'activité a bien été ajoutée.');
 
-                return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
-            }
+            return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/activity/new.html.twig', [
@@ -64,17 +62,15 @@ final class ActivityController extends AbstractController
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $slug = $slugger->slug($activity->getName());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($activity->getName())->lower();
             $activity->setSlug($slug);
 
-            if ($form->isValid()) {
-                $entityManager->flush();
+            $entityManager->flush();
 
-                $this->addFlash('success', 'L\'activité a bien été modifiée.');
+            $this->addFlash('success', 'L\'activité a bien été modifiée.');
 
-                return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
-            }
+            return $this->redirectToRoute('app_activity_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/activity/edit.html.twig', [
