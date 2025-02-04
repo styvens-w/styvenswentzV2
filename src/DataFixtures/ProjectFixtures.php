@@ -119,7 +119,7 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
             $project->setDescription($projects['description']);
             $project->setActivity($this->getReference($projects['activity'], Activity::class));
             $project->setSlug($this->slugger->slug($projects['name']));
-            $project->setClose('false');
+            $project->setClose(false);
             $manager->persist($project);
             $this->addReference('project_' . $key, $project);
         }
