@@ -64,7 +64,7 @@ final class ProjectController extends AbstractController
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
             $slug = $slugger->slug($project->getName());
             $project->setSlug($slug);
 

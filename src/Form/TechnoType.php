@@ -14,6 +14,8 @@ class TechnoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        unset($options);
+
         $builder
             ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('projects', EntityType::class, [

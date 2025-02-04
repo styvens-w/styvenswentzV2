@@ -15,6 +15,8 @@ class PictureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        unset($options);
+
         $builder
             ->add('posterFile', VichFileType::class, [
                 'required' => false,

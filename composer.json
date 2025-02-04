@@ -29,6 +29,7 @@
         "symfony/mime": "7.1.*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/notifier": "7.1.*",
+        "symfony/password-hasher": "7.1.*",
         "symfony/process": "7.1.*",
         "symfony/property-access": "7.1.*",
         "symfony/property-info": "7.1.*",
@@ -102,7 +103,7 @@
         }
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.6",
+        "doctrine/doctrine-fixtures-bundle": "^4.0",
         "phpmd/phpmd": "^2.15",
         "phpro/grumphp": "^2.7",
         "phpstan/phpstan": "^1.12",

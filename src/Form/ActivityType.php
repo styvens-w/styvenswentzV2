@@ -15,6 +15,8 @@ class ActivityType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        unset($options);
+
         $builder
             ->add('name', TextareaType::class, ['label' => 'Nom'])
             ->add('compagny', TextType::class, ['label' => 'Entreprise', 'required' => false])

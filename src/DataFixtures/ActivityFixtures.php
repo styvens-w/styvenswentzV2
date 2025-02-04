@@ -3,14 +3,16 @@
 namespace App\DataFixtures;
 
 use App\Entity\Activity;
+use App\Entity\Type;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use DateTime;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ActivityFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const array ACTIVITIES = [
+    public const ACTIVITIES = [
         [
             'name' => "Développeur PHP Symfony",
             'compagny' => "Wild Code School",
@@ -53,16 +55,24 @@ class ActivityFixtures extends Fixture implements DependentFixtureInterface
         ],
     ];
 
+    private SluggerInterface $slugger;
+
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     public function load(ObjectManager $manager): void
     {
-        foreach (self::ACTIVITIES as $key => $activities) {
+        foreach (self::ACTIVITIES as $key => $activityData) {
             $activity = new Activity();
-            $activity->setName($activities['name']);
-            $activity->setCompagny($activities['compagny']);
-            $activity->setStart(new DateTime($activities['start']));
-            $activity->setEnd(new DateTime($activities['end']));
-            $activity->setDegree($activities['degree']);
-            $activity->setType($this->getReference($activities['type']));
+            $activity->setName($activityData['name']);
+            $activity->setCompagny($activityData['compagny']);
+            $activity->setStart(new DateTime($activityData['start']));
+            $activity->setEnd($activityData['end'] ? new DateTime($activityData['end']) : null);
+            $activity->setDegree($activityData['degree']);
+            $activity->setType($this->getReference($activityData['type'], Type::class));
+            $activity->setSlug($this->slugger->slug($activityData['name']));
             $manager->persist($activity);
             $this->addReference('activity_' . $key, $activity);
         }
