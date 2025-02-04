@@ -2,6 +2,14 @@
 
   &__title {
     font-size: 50px;
+    margin-bottom: 15px !important;
+  }
+
+  &__logout {
+    margin-bottom: 30px !important;
+    font-size: 20px;
+    font-weight: 600;
+    color: indianred;
   }
 
   &__actions {

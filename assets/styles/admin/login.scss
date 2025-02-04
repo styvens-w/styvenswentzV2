@@ -1,0 +1,22 @@
+.login {
+  &__title {
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 10px;
+    }
+
+    input {
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  }
+}

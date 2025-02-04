@@ -6,6 +6,10 @@
     <main class="admin">
         <h1 class="admin__title">{{ website }}</h1>
 
+        {% if app.user %}
+            <a class="admin__logout" href="{{ path('app_logout') }}"> Se déconnecter</a>
+        {% endif %}
+
         <div class="admin__actions">
             <a class="admin__actions__activity" href="{{ path('app_activity_index') }}">Activités</a>
             <a class="admin__actions__project" href="{{ path('app_project_index') }}">Projets</a>

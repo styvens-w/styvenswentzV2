@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Picture;
+use App\Entity\Project;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -53,7 +54,7 @@ class PictureFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::PICTURES as $pictures) {
             $picture = new Picture();
             $picture->setName($pictures['name']);
-            $picture->setProject($this->getReference($pictures['project']));
+            $picture->setProject($this->getReference($pictures['project'], Project::class));
             $manager->persist($picture);
         }
 

@@ -2,11 +2,13 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Activity;
 use App\Entity\Project;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use DateTime;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ProjectFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -98,6 +100,13 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
         ],
     ];
 
+    private SluggerInterface $slugger;
+
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     public function load(ObjectManager $manager): void
     {
         foreach (self::PROJECTS as $key => $projects) {
@@ -108,7 +117,9 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
             $project->setSite($projects['site']);
             $project->setGithub($projects['github']);
             $project->setDescription($projects['description']);
-            $project->setActivity($this->getReference($projects['activity']));
+            $project->setActivity($this->getReference($projects['activity'], Activity::class));
+            $project->setSlug($this->slugger->slug($projects['name']));
+            $project->setClose('false');
             $manager->persist($project);
             $this->addReference('project_' . $key, $project);
         }
