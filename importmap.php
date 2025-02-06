@@ -11,6 +11,7 @@
  *
  * The "importmap:require" command can be used to add new entries to this file.
  */
+
 return [
     'app' => [
         'path' => './assets/app.js',
@@ -34,5 +35,26 @@ return [
     'bootstrap/dist/css/bootstrap.min.css' => [
         'version' => '5.3.3',
         'type' => 'css',
+    ],
+    '@swup/fade-theme' => [
+        'version' => '1.0.5',
+    ],
+    '@swup/slide-theme' => [
+        'version' => '1.0.5',
+    ],
+    '@swup/forms-plugin' => [
+        'version' => '2.0.1',
+    ],
+    '@swup/plugin' => [
+        'version' => '2.0.3',
+    ],
+    'swup' => [
+        'version' => '3.1.1',
+    ],
+    'delegate-it' => [
+        'version' => '6.0.1',
+    ],
+    '@swup/debug-plugin' => [
+        'version' => '3.0.0',
     ],
 ];
