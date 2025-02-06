@@ -17,13 +17,4 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig');
     }
-
-    public function header(ProjectRepository $projectRepository): Response
-    {
-        $projects = $projectRepository->findAll();
-
-        return $this->render('base/header/_header.html.twig', [
-            'projects' => $projects,
-        ]);
-    }
 }
