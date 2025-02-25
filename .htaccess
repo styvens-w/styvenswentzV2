@@ -9,13 +9,13 @@
 
     # redirect to no-www
     RewriteBase /
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+    # https redirect
     RewriteCond %{HTTP:X-Forwared-Proto} !https
     RewriteCond %{HTTPS} !on
     RewriteRule ^(.*) https://%{HTTPS_HOST}%{REQUEST_URI} [L,R=301]
-
-    # https redirect
-    RewriteCond %{HTTPS} !=on
-    RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
     # redirect all requests to public directory
     RewriteCond %{REQUEST_URI} !public/
