@@ -1,6 +1,6 @@
 .PHONY: deploy install
 deploy:
-	ssh -A portfolio 'cd public_html && git pull origin main && make install'
+	ssh portfolio 'cd public_html && git pull origin main && make install'
 
 install: vendor/autoload.php
 	php bin/console d:m:m -n
