@@ -15,6 +15,10 @@
       .navbar-brand img {
         height: 100px;
         border-radius: 50%;
+
+        @media screen and (max-width: 991px) {
+          height: 70px;
+        }
       }
 
       .navbar-toggler {
