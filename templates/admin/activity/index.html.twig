@@ -14,24 +14,24 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
+                <th class="desktop">Id</th>
                 <th>Nom</th>
-                <th>Entreprise</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Diplôme</th>
+                <th class="desktop">Entreprise</th>
+                <th class="desktop">Date de début</th>
+                <th class="desktop">Date de fin</th>
+                <th class="desktop">Diplôme</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             {% for activity in activities %}
                 <tr>
-                    <td>{{ activity.id }}</td>
+                    <td class="desktop">{{ activity.id }}</td>
                     <td>{{ activity.name }}</td>
-                    <td>{{ activity.compagny }}</td>
-                    <td>{{ activity.start|date('d/m/Y') }}</td>
-                    <td>{{ activity.end ? activity.end|date('d/m/Y') : 'En cours' }}</td>
-                    <td>{{ activity.degree ? activity.degree : 'Sans diplôme' }}</td>
+                    <td class="desktop">{{ activity.compagny }}</td>
+                    <td class="desktop">{{ activity.start|date('d/m/Y') }}</td>
+                    <td class="desktop">{{ activity.end ? activity.end|date('d/m/Y') : 'En cours' }}</td>
+                    <td class="desktop">{{ activity.degree ? activity.degree : 'Sans diplôme' }}</td>
                     <td>
                         <div class="actions">
                             <a class="actions__show" href="{{ path('app_activity_show', {'slug': activity.slug}) }}">Voir</a>

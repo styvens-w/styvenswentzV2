@@ -14,24 +14,24 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
+                <th class="desktop">Id</th>
                 <th>Nom</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Site</th>
-                <th>Github</th>
+                <th class="desktop">Date de début</th>
+                <th class="desktop">Date de fin</th>
+                <th class="desktop">Site</th>
+                <th class="desktop">Github</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             {% for project in projects %}
                 <tr>
-                    <td>{{ project.id }}</td>
+                    <td class="desktop">{{ project.id }}</td>
                     <td>{{ project.name }}</td>
-                    <td>{{ project.start ? project.start|date('d/m/Y') : '' }}</td>
-                    <td>{{ project.end ? project.end|date('d/m/Y') : '' }}</td>
-                    <td>{{ project.site }}</td>
-                    <td>{{ project.github }}</td>
+                    <td class="desktop">{{ project.start ? project.start|date('d/m/Y') : '' }}</td>
+                    <td class="desktop">{{ project.end ? project.end|date('d/m/Y') : '' }}</td>
+                    <td class="desktop">{{ project.site }}</td>
+                    <td class="desktop">{{ project.github }}</td>
                     <td>
                         <div class="actions">
                             <a class="actions__show" href="{{ path('app_project_show', {'slug': project.slug}) }}">Voir</a>
