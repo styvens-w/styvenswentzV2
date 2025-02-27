@@ -59,7 +59,7 @@ class Project
     private ?string $slug = "";
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Vous devez indiquer si le site est fermé ou non")]
+    #[Assert\NotNull(message: "Vous devez indiquer si le site est fermé ou non")]
     private ?bool $close = null;
 
     public function __construct()
