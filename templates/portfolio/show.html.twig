@@ -73,7 +73,11 @@
                     <span>Site :</span>
                     <span>
                     {% if project.site %}
-                        <a href="{{ project.site }}">Cliquez ici</a>
+                        {% if project.close %}
+                            <span>Site fermé</span>
+                        {% else %}
+                            <a href="{{ project.site }}">Cliquez ici</a>
+                        {% endif %}
                     {% else %}
                         Aucun
                     {% endif %}
