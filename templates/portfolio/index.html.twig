@@ -7,7 +7,19 @@
         <h1 class="portfolio__title">Portfolio</h1>
 
         <section class="portfolio__cards">
+            {% set displayedActivities = [] %}
+
             {% for project in projects %}
+
+                {% set activityKey = project.activity.type.name ~ ' - ' ~ project.activity.name %}
+
+                {% if activityKey not in displayedActivities %}
+
+                    <h2 class="portfolio__cards__title">{{ activityKey }}</h2>
+                    {% set displayedActivities = displayedActivities|merge([activityKey]) %}
+
+                {% endif %}
+
             <div class="portfolio__cards__card">
                 <a href="{{ path('portfolio_show', {id: project.id}) }}">
                     {% if project.pictures is not empty %}
