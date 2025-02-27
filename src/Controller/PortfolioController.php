@@ -20,7 +20,7 @@ class PortfolioController extends AbstractController
         if ($activityId) {
             $projects = $projectRepository->findByActivityId($activityId);
         } else {
-            $projects = $projectRepository->findBy([], ['end' => 'DESC']);
+            $projects = $projectRepository->findBy([], ['activity' => 'ASC', 'start' => 'DESC']);
         }
 
         return $this->render('portfolio/index.html.twig', [

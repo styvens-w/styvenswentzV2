@@ -19,7 +19,7 @@ final class ActivityController extends AbstractController
     public function index(ActivityRepository $activityRepository): Response
     {
         return $this->render('admin/activity/index.html.twig', [
-            'activities' => $activityRepository->findBy([], ['end' => 'DESC']),
+            'activities' => $activityRepository->findBy([], ['start' => 'DESC']),
         ]);
     }
 
