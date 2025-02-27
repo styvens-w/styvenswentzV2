@@ -32,3 +32,9 @@ main {
 .information {
   margin: 0;
 }
+
+@media screen and (max-width: 991px) {
+  .desktop {
+    display: none;
+  }
+}
