@@ -1,6 +1,10 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+
+    {{ form_row(form.posterFile, {'attr': {'multiple': 'multiple'}}) }}
+    {{ form_row(form.project) }}
+
     <div class="actions">
         <button class="btn actions__new">{{ button_label|default('Ajouter') }}</button>
     </div>
+
 {{ form_end(form) }}

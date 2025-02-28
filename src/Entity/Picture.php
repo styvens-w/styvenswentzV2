@@ -25,7 +25,7 @@ class Picture
 
     #[Vich\UploadableField(mapping: 'poster_file', fileNameProperty: 'name')]
     #[Assert\File(
-        maxSize: '3M',
+        maxSize: '20M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
     #[Assert\NotBlank(message: "Vous devez choisir une image.")]
@@ -56,10 +56,11 @@ class Picture
         return $this;
     }
 
-    public function setPosterFile(File $image = null): Picture
+    public function setPosterFile(?File $posterFile): self
     {
-        $this->posterFile = $image;
-        if ($image) {
+        $this->posterFile = $posterFile;
+
+        if ($posterFile) {
             $this->updatedAt = new DateTime('now');
         }
 
