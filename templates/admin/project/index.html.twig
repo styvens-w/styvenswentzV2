@@ -18,8 +18,7 @@
                 <th>Nom</th>
                 <th class="desktop">Date de début</th>
                 <th class="desktop">Date de fin</th>
-                <th class="desktop">Site</th>
-                <th class="desktop">Github</th>
+                <th class="desktop">Activité</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -30,8 +29,7 @@
                     <td>{{ project.name }}</td>
                     <td class="desktop">{{ project.start ? project.start|date('d/m/Y') : '' }}</td>
                     <td class="desktop">{{ project.end ? project.end|date('d/m/Y') : '' }}</td>
-                    <td class="desktop">{{ project.site }}</td>
-                    <td class="desktop">{{ project.github }}</td>
+                    <td class="desktop">{{ project.activity.name }}</td>
                     <td>
                         <div class="actions">
                             <a class="actions__show" href="{{ path('app_project_show', {'slug': project.slug}) }}">Voir</a>
