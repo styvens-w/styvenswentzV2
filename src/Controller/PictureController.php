@@ -25,13 +25,24 @@ final class PictureController extends AbstractController
     #[Route('/new', name: 'app_picture_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $picture = new Picture();
-        $form = $this->createForm(PictureType::class, $picture);
+        $form = $this->createForm(PictureType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($picture);
-            $entityManager->flush();
+        if ($form->isSubmitted()) {
+            $project = $form->get('project')->getData();
+            $files = $form->get('posterFile')->getData();
+
+            if ($files) {
+                foreach ($files as $file) {
+                    $picture = new Picture();
+                    $picture->setPosterFile($file);
+
+                    $picture->setProject($project);
+
+                    $entityManager->persist($picture);
+                }
+                $entityManager->flush();
+            }
 
             $this->addFlash('success', 'L\'image a bien été ajoutée.');
 
@@ -39,7 +50,6 @@ final class PictureController extends AbstractController
         }
 
         return $this->render('admin/picture/new.html.twig', [
-            'picture' => $picture,
             'form' => $form,
         ]);
     }

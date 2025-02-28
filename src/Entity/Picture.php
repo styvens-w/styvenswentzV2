@@ -25,13 +25,14 @@ class Picture
 
     #[Vich\UploadableField(mapping: 'poster_file', fileNameProperty: 'name')]
     #[Assert\File(
-        maxSize: '3M',
+        maxSize: '20M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
     private ?File $posterFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'pictures')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank(message: "Vous devez choisir un projet associé a l'image choisie.")]
     private ?Project $project = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -54,10 +55,11 @@ class Picture
         return $this;
     }
 
-    public function setPosterFile(File $image = null): Picture
+    public function setPosterFile(?File $posterFile): self
     {
-        $this->posterFile = $image;
-        if ($image) {
+        $this->posterFile = $posterFile;
+
+        if ($posterFile) {
             $this->updatedAt = new DateTime('now');
         }
 

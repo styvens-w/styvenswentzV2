@@ -6,7 +6,8 @@ use App\Entity\Picture;
 use App\Entity\Project;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
@@ -15,12 +16,15 @@ class PictureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        unset($options);
+
         $builder
-            ->add('posterFile', VichFileType::class, [
+            ->add('posterFile', FileType::class, [
+                'label' => 'Choisir des images',
+                'multiple' => true,
+                'mapped' => false,
                 'required' => false,
-                'allow_delete' => false,
-                'download_uri' => true,
-                'label' => 'Choisir une image',
+                'attr' => ['accept' => 'image/jpeg,image/png,image/webp'],
             ])
             ->add('project', EntityType::class, [
                 'class' => Project::class,
