@@ -21,29 +21,55 @@
       }
     }
 
-    &__info div {
-      font-size: 20px;
-      color: $primary-color;
-      margin-bottom: 15px;
+    &__info {
+      padding: 20px;
+      background: #101010;
+      border-radius: 10px;
+      text-align: center;
 
-      span:first-child, p:first-child {
-        display: inline-block;
-        font-weight: bold;
-        text-decoration: underline;
-        width: 180px;
+      &__compagny {
+        font-size: 24px;
+        margin-bottom: 5px;
+        color: #664d03;
+      }
 
-        @media screen and (max-width: 991px) {
-          width: 100%;
+      &__activity {
+        font-size: 22px;
+        margin-bottom: 7px;
+        color: gold;
+      }
+
+      &__date {
+        font-size: 20px;
+        color: blue;
+      }
+
+      &__site, &__github {
+        margin-bottom: 5px;
+      }
+
+      &__site, &__github, &__techno, a {
+        font-size: 16px;
+        color: #4fe44f;
+
+        span:first-child {
+          color: lightgreen;
+          font-weight: 700;
+          font-size: 18px;
         }
       }
 
-      span a {
-        text-decoration: none;
-        color: white;
-        font-weight: 600;
+      &__description {
+        p:first-child {
+          font-size: 18px;
+          text-decoration: underline;
+          color: seagreen;
+          font-weight: 700;
+        }
 
-        &:hover {
-          font-weight: bold;
+        p:last-child {
+          font-size: 16px;
+          color: sandybrown;
         }
       }
     }

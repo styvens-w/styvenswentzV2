@@ -22,35 +22,22 @@
 
             <div class="portfolio__cards__card">
                 <a href="{{ path('portfolio_show', {id: project.id}) }}">
-                    {% if project.pictures is not empty %}
-                        <div class="portfolio__cards__card__img">
-                            <img src="{{ vich_uploader_asset(project.pictures|first) }}" alt="{{ project.name }}">
-                        </div>
-                    {% endif %}
-
                     <div class="portfolio__cards__card__info">
-                        <p>
-                            <span>{{ project.activity.type.name ==  'Formation' ? 'Formation :' : 'Activité :' }}</span>
-                            <span>
+                        <h3 class="portfolio__cards__card__info__title">{{ project.name }}</h3>
+
+                        <p class="portfolio__cards__card__info__compagny">
+                            {{ project.activity.compagny ? project.activity.compagny }}
+                        </p>
+
+                        <p class="portfolio__cards__card__info__activity">
+                            {{ project.activity.type.name ==  'Formation' ? 'Formation ' : 'Activité ' }}
                             {{ project.activity.name }}
-                                {{ project.activity.degree ? '(' ~ project.activity.degree ~ ')' }}
-                                {{ project.activity.compagny ? ' - ' ~ project.activity.compagny }}
-                        </span>
+                            {{ project.activity.degree ? '(' ~ project.activity.degree ~ ')' }}
                         </p>
 
-                        <p>
-                            <span>Projet :</span>
-                            <span>{{ project.name }} {{ project.close ? ' (Le site n\'est pas en ligne ou l\'entreprise a fermé.)' }}</span>
-                        </p>
-
-                        <p>
-                            <span>Début du projet :</span>
-                            <span>{{ project.start|date('d/m/Y') }}</span>
-                        </p>
-
-                        <p>
-                            <span>Fin du projet :</span>
-                            <span>{{ project.end ? project.end|date('d/m/Y') : 'En cours' }}</span>
+                        <p class="portfolio__cards__card__info__date">
+                            Du {{ project.start|date('d/m/Y') }}
+                            {{ project.end ? 'au ' ~ project.end|date('d/m/Y') : 'à maintenant' }}
                         </p>
                     </div>
                 </a>
