@@ -34,77 +34,57 @@
             {% endif %}
 
             <div class="project__card__info">
-                <div>
-                    <span>Type :</span>
-                    <span>
-                    {{ project.activity.type.name }}
-                    </span>
-                </div>
+                <p class="project__card__info__compagny">
+                    {{ project.activity.compagny ? project.activity.compagny }}
+                </p>
 
-                <div>
-                    <span>Activité :</span>
-                    <span>
+                <p class="project__card__info__activity">
+                    {{ project.activity.type.name ==  'Formation' ? 'Formation ' : 'Activité ' }}
                     {{ project.activity.name }}
-                    </span>
-                </div>
+                    {{ project.activity.degree ? '(' ~ project.activity.degree ~ ')' }}
+                </p>
 
-                <div>
-                    <span>Projet réalisé chez :</span>
+                <p class="project__card__info__date">
+                    Du {{ project.start|date('d/m/Y') }}
+                    {{ project.end ? 'au ' ~ project.end|date('d/m/Y') : 'à maintenant' }}
+                </p>
+
+                <p class="project__card__info__site">
+                    <span>Site web :</span>
                     <span>
-                        {% if project.activity.compagny %}
-                            {{ project.activity.compagny }}
+                        {% if project.site %}
+                            {% if project.close %}
+                                <span>Site fermé</span>
+                            {% else %}
+                                <a href="{{ project.site }}">Cliquez ici</a>
+                            {% endif %}
                         {% else %}
-                            Aucune
+                            Aucun
                         {% endif %}
                     </span>
-                </div>
+                </p>
 
-                <div>
-                    <span>Début du projet :</span>
-                    <span>{{ project.start|date('d/m/Y') }}</span>
-                </div>
-
-                <div>
-                    <span>Fin du projet :</span>
-                    <span>{{ project.end ? project.end|date('d/m/Y') : 'En cours' }}</span>
-                </div>
-
-                <div>
-                    <span>Site :</span>
-                    <span>
-                    {% if project.site %}
-                        {% if project.close %}
-                            <span>Site fermé</span>
-                        {% else %}
-                            <a href="{{ project.site }}">Cliquez ici</a>
-                        {% endif %}
-                    {% else %}
-                        Aucun
-                    {% endif %}
-                </span>
-                </div>
-
-                <div>
+                <p class="project__card__info__github">
                     <span>Github :</span>
                     <span>
-                    {% if project.github %}
-                        <a href="{{ project.github }}">Cliquez ici</a>
-                    {% else %}
-                        Privé
-                    {% endif %}
-                </span>
-                </div>
+                        {% if project.github %}
+                            <a href="{{ project.github }}">Cliquez ici</a>
+                        {% else %}
+                            Privé
+                        {% endif %}
+                    </span>
+                </p>
 
-                <div>
-                    <span>Technologies :</span>
+                <p class="project__card__info__techno">
+                    <span>Technologies utilisées :</span>
                     {% for techno in project.technos %}
                         <span>{{ techno.name }} | </span>
                     {% else %}
                         <span>Aucune technologie pour ce projet</span>
                     {% endfor %}
-                </div>
+                </p>
 
-                <div>
+                <div class="project__card__info__description">
                     <p>Description :</p>
                     <p>{{ project.description }}</p>
                 </div>
